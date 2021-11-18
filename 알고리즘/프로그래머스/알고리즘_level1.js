@@ -29,6 +29,7 @@ console.log(result);
 // arr = [4, 4, 4, 3, 3] 이면 [4, 3] 을 return 합니다.
 // 배열 arr에서 연속적으로 나타나는 숫자는 제거하고 남은 수들을 return 하는 solution 함수를 완성해 주세요.
 
+// 시간초과뜸
 function solution(arr) {
   for (let i = 0; i < arr.length - 1; i++) {
     if (arr[i] === arr[i + 1]) { // i번째와 i+1번째가 같으면 (ex 0번째와 1번째가 같을때)
@@ -117,6 +118,7 @@ console.log(solution('ppy'));
 // Q6, 문자열 s의 길이가 4 혹은 6이고, 숫자로만 구성돼있는지 확인해주는 함수, solution을 완성하세요. 
 // 예를 들어 s가 "a234"이면 False를 리턴하고 "1234"라면 True를 리턴하면 됩니다.
 
+// 정확성테스트 실패
 function solution(s){
   if(!(s.length === 4 || s.length === 6)){
     console.log('문자열의 길이는 4 또는 6만 허용됩니다.');
@@ -197,5 +199,76 @@ function solution(s) {
 
 console.log(solution('+1234'));
 
+// Q10, 1부터 입력받은 숫자 n 사이에 있는 소수의 개수를 반환하는 함수, solution을 만들어 보세요
+// 소수는 1과 자기 자신으로만 나누어지는 수를 의미합니다.
+// (1은 소수가 아닙니다.)
+// 시간초과
 
-* Q2, Q6 미해결상태
+function solution(n){
+
+  let divisorCount = 0; // 0으로 나누어지는지 세어주는 카운트변수
+  let primeArr = []; // primeArr : 소수들을 담는 배열
+
+  for(let i = 2; i <= n; i++){ // 2부터 n까지의 수를 반복문돌리고
+    for(let j = 1; j <= i; j++){ // 1부터 i까지(해당숫자만큼) 반복문돌리고
+      if(i % j === 0){ // 예시 5를 1부터 5까지 나눠졌을때
+        divisorCount++; // 0으로 나누어떨어지니 해당카운트 세기
+      }
+    }
+
+    if(divisorCount === 2){ // 소수는 1과 자기자신만 나누어질수있으므로 2가지 경우일 때,
+      primeArr.push(i); // 소수들의집합체(primeArr)에 해당값을 push
+    }
+    divisorCount = 0; // 카운트세는 변수 초기화 => 0
+  }
+
+  return primeArr.length; // 소수들이 몇개인지 반환
+
+}
+
+console.log(solution(10));
+
+
+// Q11, 정수 n을 입력받아 n의 약수를 모두 더한 값을 리턴하는 함수, solution을 완성해주세요.
+
+function solution(n){
+  let sum = 0;
+  for(let i = 1; i <= n; i++){
+    if(n % i === 0){
+      sum += i;
+    }
+  }
+
+  return sum;
+}
+
+console.log(solution(12));
+
+// Q12, 문자열 s는 한 개 이상의 단어로 구성되어 있습니다. 
+// 각 단어는 하나 이상의 공백문자로 구분되어 있습니다.
+// 각 단어의 짝수번째 알파벳은 대문자로, 
+// 홀수번째 알파벳은 소문자로 바꾼 문자열을 리턴하는 함수, solution을 완성하세요.
+
+function solution(s){
+
+  let wordIndex = 0; // 단어마다 index번호를 세기위해 wordIndex 변수선언
+  s= s.split('');
+  for(let i = 0; i < s.length; i++){
+    if(s[i] === ' '){ // 해당요소가 빈칸이면
+      wordIndex = 0; // 단어 index 리셋
+      continue; // 다음으로
+    }
+    if(wordIndex % 2 === 0){ // 인덱스번호가 짝수이면 
+      s[i] = s[i].toUpperCase(); // 해당문자 대문자로 변경
+    }
+    wordIndex++;
+  }
+  
+  s = s.join('');
+  return s;
+
+}
+
+console.log(solution('nice to meet you'))
+
+* Q2, Q6, Q10 미해결상태
