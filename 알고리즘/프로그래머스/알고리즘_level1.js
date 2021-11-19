@@ -331,4 +331,4 @@ function solution(n){
 
 console.log(solution(3));
 
-* Q2, Q6, Q10 미해결상태
+* Q6, Q10, Q12, Q14 미해결상태
