@@ -271,65 +271,6 @@ function solution(s){
 
 console.log(solution('nice to meet you'))
 
-// Q13(자리수더하기), 자연수 N이 주어지면, N의 각 자릿수의 합을 구해서 return 하는 solution 함수를 만들어 주세요.
-// 예를들어 N = 123이면 1 + 2 + 3 = 6을 return 하면 됩니다.
-
-
-
-function solution(n){
-  const digit = n.toString().length;
-  let divisorValue = 1; 
-
-  for(let i = 1; i < digit; i++){
-   divisorValue *= 10;
-  }
-
-  console.log(divisorValue)
-  console.log(Math.floor(n / divisorValue));
-  console.log(Math.floor(n % divisorValue / ));
-  console.log(Math.floor(n % 10));
-}
-
-console.log(solution(1234));
-
-// Q14(자연수 뒤집어 배열로 만들기), 자연수 n을 뒤집어 각 자리 숫자를 원소로 가지는 배열 형태로 리턴해주세요. 
-// 예를들어 n이 12345이면 [5,4,3,2,1]을 리턴합니다
-
-function solution(n){
-  n = n.toString().split('');
-
-  for(let i = 0; i < n.length; i++){
-    n[i] = Number(n[i]);
-  }
-  n.sort(function(a,b){
-    return b - a;
-  })
-  return n;
-
-}
-
-console.log(solution(478221));
-
-// Q15(정수 제곱근 판별), 임의의 양의 정수 n에 대해, n이 어떤 양의 정수 x의 제곱인지 아닌지 판단하려 합니다.
-// n이 양의 정수 x의 제곱이라면 x+1의 제곱을 리턴하고, 
-// n이 양의 정수 x의 제곱이 아니라면 -1을 리턴하는 함수를 완성하세요.
-
-function solution(n){
-  
-  const sqrt = Math.sqrt(n);
-  let answer;
-  console.log(n, sqrt);
-  if(n === (sqrt * sqrt)){
-    answer =  (sqrt + 1) * (sqrt + 1);
-  } else{
-    answer = -1;
-  }
-
-  return answer;
-}
-
-console.log(solution(120));
-
 
 // Q13(자리수더하기), 자연수 N이 주어지면, N의 각 자릿수의 합을 구해서 return 하는 solution 함수를 만들어 주세요.
 // 예를들어 N = 123이면 1 + 2 + 3 = 6을 return 하면 됩니다.
