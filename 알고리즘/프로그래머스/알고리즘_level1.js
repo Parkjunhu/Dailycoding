@@ -271,6 +271,65 @@ function solution(s){
 
 console.log(solution('nice to meet you'))
 
+// Q13(자리수더하기), 자연수 N이 주어지면, N의 각 자릿수의 합을 구해서 return 하는 solution 함수를 만들어 주세요.
+// 예를들어 N = 123이면 1 + 2 + 3 = 6을 return 하면 됩니다.
+
+
+
+function solution(n){
+  const digit = n.toString().length;
+  let divisorValue = 1; 
+
+  for(let i = 1; i < digit; i++){
+   divisorValue *= 10;
+  }
+
+  console.log(divisorValue)
+  console.log(Math.floor(n / divisorValue));
+  console.log(Math.floor(n % divisorValue / ));
+  console.log(Math.floor(n % 10));
+}
+
+console.log(solution(1234));
+
+// Q14(자연수 뒤집어 배열로 만들기), 자연수 n을 뒤집어 각 자리 숫자를 원소로 가지는 배열 형태로 리턴해주세요. 
+// 예를들어 n이 12345이면 [5,4,3,2,1]을 리턴합니다
+
+function solution(n){
+  n = n.toString().split('');
+
+  for(let i = 0; i < n.length; i++){
+    n[i] = Number(n[i]);
+  }
+  n.sort(function(a,b){
+    return b - a;
+  })
+  return n;
+
+}
+
+console.log(solution(478221));
+
+// Q15(정수 제곱근 판별), 임의의 양의 정수 n에 대해, n이 어떤 양의 정수 x의 제곱인지 아닌지 판단하려 합니다.
+// n이 양의 정수 x의 제곱이라면 x+1의 제곱을 리턴하고, 
+// n이 양의 정수 x의 제곱이 아니라면 -1을 리턴하는 함수를 완성하세요.
+
+function solution(n){
+  
+  const sqrt = Math.sqrt(n);
+  let answer;
+  console.log(n, sqrt);
+  if(n === (sqrt * sqrt)){
+    answer =  (sqrt + 1) * (sqrt + 1);
+  } else{
+    answer = -1;
+  }
+
+  return answer;
+}
+
+console.log(solution(120));
+
 
 // Q13(자리수더하기), 자연수 N이 주어지면, N의 각 자릿수의 합을 구해서 return 하는 solution 함수를 만들어 주세요.
 // 예를들어 N = 123이면 1 + 2 + 3 = 6을 return 하면 됩니다.
@@ -331,4 +390,87 @@ function solution(n){
 
 console.log(solution(3));
 
-* Q6, Q10, Q12, Q14 미해결상태
+// Q16(제일 작은 수 제거하기), 정수를 저장한 배열, arr에서 가장 작은 수를 제거한 배열을 리턴하는 함수, solution을 완성해주세요. 
+// 단, 리턴하려는 배열이 빈 배열인 경우엔 배열에 -1을 채워 리턴하세요.
+// 예를들어 arr이 [4,3,2,1]인 경우는 [4,3,2]를 리턴 하고, [10]면 [-1]을 리턴 합니다.
+function solution(arr){
+  let min = arr[0]; // 제일 작은수를 arr[0]으로 기본값 설정
+  let lowIndex = 0; // 제일 작은수의 index를 0으로 설정
+  for(let i = 1; i < arr.length; i++){
+    if(arr[i] < min){ // arr[i]이 min 보다 작으면
+      min = arr[i]; // arr[i]를 min에 대입(arr[i]가 제일 작은수가 됨)
+      lowIndex = i; // i를 lowIndex에 대입(i가 제일 작은 index가 됨)
+    }
+  }
+
+  arr.splice(lowIndex, 1); // 배열 splice 함수를 이용해 해당 index(제일 작은수의 index)를 삭제
+  if(arr.length === 0){ // 빈배열 이라면,
+    arr.push(-1); // arr에 -1을 삽입
+  }
+  return arr;
+}
+
+console.log(solution([8]));
+
+// Q17(짝수와 홀수), 정수 num이 짝수일 경우 "Even"을 반환하고, 
+// 홀수인 경우 "Odd"를 반환하는 함수, solution을 완성해주세요.ㄴ
+function solution(num) {
+  let answer;
+  if(num % 2 === 0){ // num이 짝수면
+    answer = 'Even'; 
+  } else{
+    answer = 'Odd';
+  }
+  return answer;
+}
+
+console.log(solution(3));
+
+// Q18(평균 구하기), 정수를 담고 있는 배열 arr의 평균값을 return하는 함수, solution을 완성해보세요.
+function solution(arr) {
+  let sum = 0;
+  for(let i = 0; i < arr.length; i++){
+    sum += arr[i]; // 각각의 요소들의 합을 구함
+  }
+  return sum / arr.length; // sum / arr.length : 합계를 arr의 크기만큼 나눔(평균을 return)
+}
+
+console.log(solution([1,2,3,4]));
+
+// Q19(콜라츠추측), 1937년 Collatz란 사람에 의해 제기된 이 추측은, 주어진 수가 1이 될때까지 다음 작업을 반복하면,
+// 모든 수를 1로 만들 수 있다는 추측입니다. 작업은 다음과 같습니다.
+
+// 1-1. 입력된 수가 짝수라면 2로 나눕니다. 
+// 1-2. 입력된 수가 홀수라면 3을 곱하고 1을 더합니다.
+// 2. 결과로 나온 수에 같은 작업을 1이 될 때까지 반복합니다
+
+// 예를 들어, 입력된 수가 6이라면 6→3→10→5→16→8→4→2→1 이 되어 총 8번 만에 1이 됩니다. 
+// 위 작업을 몇 번이나 반복해야하는지 반환하는 함수, solution을 완성해 주세요.
+// 단, 작업을 500번을 반복해도 1이 되지 않는다면 –1을 반환해 주세요.
+
+function solution(n){
+  let count;
+  if(n === 1){ // n이 input값으로 1이 들어온다고 했을 때, 
+    return 0; // return 0;
+  }
+  for(let i = 1; i <= 500; i++){ 
+    if(n % 2 === 0){ // n이 짝수일 떄
+      n = n / 2; // n을 2로 나눈 몫을 n에 저장
+    } else{ // n이 홀수일 때
+      n = n * 3 + 1;
+    }
+
+    if(n === 1){ // 나눠서 1이 되었을 때
+      count = i; // 나누는 동안 반복한 횟수(i값)를 count에 저장
+      break;
+    }
+  }
+  if(n !== 1){ // 500번을 돌렸는데도 n이 1이 아닌경우
+    count = -1; // count에 -1을 대입
+  }
+  return count;
+}
+
+console.log(solution(1));
+
+* Q2, Q6, Q10, Q14 미해결상태
