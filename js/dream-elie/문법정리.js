@@ -402,3 +402,281 @@ console.log(triagle.toString());
 // 6. Class checking : instanceOf
 console.log(rectangle instanceof Rectangle);
 
+/* Object */
+// 1. Literals and properties
+const obj1 = {}; // 'object literal' syntax
+const obj2 = new Object(); // 'object constuctor' syntax
+
+function print(person){
+  console.log(person);
+}
+
+const junhu = { name : 'junhu', age : 4};
+print(junhu);
+junhu.hasJob = false;
+print(junhu);
+delete junhu.hasJob;
+print(junhu);
+
+// 2. Computed properties
+ console.log(junhu.name);
+ console.log(junhu['name']);
+ junhu['hasJob'] = true;
+ console.log(junhu.hasJob);
+
+ function printValue(obj, key){
+   console.log(obj[key]);
+ }
+ printValue(junhu, 'name');
+
+ // 3. Property value shorthand
+ const person1 = { name : 'bob', age : 2}
+ const person2 = { name : 'steve', age : 3}
+ const person3 = { name : 'dave', age : 4}
+ const person4 = new Person('jun', 20);
+
+ // 4. Constructor Function
+ function Person(name, age){
+   this.name = name;
+   this.age = age;
+ }
+ console.log(person4);
+
+ // 5. in operator : property exist check(key in object)
+ console.log('name' in junhu);
+ console.log('age' in junhu);
+ console.log('random' in junhu);
+
+ // 6. for..in vs for..of
+// for (key in obj)
+for(key in junhu){
+  console.log(key);
+}
+
+// for (value of iterable)
+const array = [1,2,4,5];
+for(value of array){
+  console.log(value);
+}
+
+// 7. Fun cloning
+// Object.assign(dest, [obj1, obj2, obj3 ...])
+const user = { name : 'ellie', age : '20'}
+const user2 = user;
+//user2.name = 'jun';
+console.log(user)
+
+// old way
+const user3 = {};
+for(key in user){
+  user3[key] = user[key];
+}
+console.log(user3);
+
+const user4 = Object.assign({}, user);
+user4.name = 'jun';
+console.log(user4);
+console.log(user);
+
+// another example
+const fruit1 = { color : 'red'}
+const fruit2 = { color : 'blue', size : 'big'}
+const mixed = Object.assign({}, fruit1, fruit2);
+console.log(mixed.color);
+console.log(mixed.size);
+
+'use strict';
+/* Array */
+
+// 1. Declaration
+const arr1 = new Array();
+const arr2 = [1,2];
+
+// 2. Index position
+const fruits = ['사과', '바나나'];
+console.log(fruits);
+console.log(fruits.length);
+console.log(fruits[0]);
+console.log(fruits[1]);
+console.log(fruits[fruits.length - 1]);
+
+console.log("------------------------")
+
+// 3. Looping over an array
+// print all fruits
+// a. for
+for(let i = 0; i < fruits.length; i++){
+  console.log(fruits[i]);
+}
+
+// b. for of
+for(let fruit of fruits){
+  console.log(fruit);
+}
+
+// c. forEach
+fruits.forEach(fruit => console.log(fruit));
+
+// d. for in
+for(let fruit in fruits){
+  console.log(fruits[fruit]);
+}
+
+// 4. Addition, deletion, copy
+// push : add an item to the end
+fruits.push('딸기', '복숭아');
+console.log(fruits);
+
+// pop : remove an item from the end
+fruits.pop();
+fruits.pop();
+console.log(fruits);
+
+// unshift : add an item to the beginning
+fruits.unshift('딸기', '레몬');
+console.log(fruits);
+// shift : remove an item to the beginning
+fruits.shift();
+fruits.shift();
+console.log(fruits);
+
+// note!! shift, unshift are slower than pop, push
+// splice : remove an item by index position
+fruits.push('딸기', '복숭아', '레몬');
+console.log(fruits);
+fruits.splice(1,1);
+console.log(fruits);
+fruits.splice(1,1,'바나나', '포도');
+console.log(fruits);
+
+// combine two arrays
+const fruits2 = ['브로컬리', '오렌지'];
+const newFruits = fruits.concat(fruits2);
+console.log(newFruits);
+
+// 5. Searching
+// indexOf : find the index // 있으면 해당인덱스, 없으면 -1 리턴
+console.log(fruits.indexOf('사과'));
+
+// includes : O : true / X : true
+console.log(fruits.includes('사과'));
+
+// lastIndexOf
+console.log(fruits.lastIndexOf('사과'));
+
+'use strict';
+/* 1 ~ 10 Quiz */
+// Q1. make a string out of an array (배열을 문자열로 변환)
+{
+const fruits = ['apple', 'banana', 'orange'];
+console.log(fruits.join());
+}
+
+// Q2. make an array out of a string (문자열을 문자열배열로 변환)
+{
+const fruits = '사과, 레몬, 딸기, 바나나';
+console.log(fruits.split(','));
+}
+
+// Q3. make this array look like this : [5, 4, 3, 2 ,1]
+{
+  const array = [1, 2, 3, 4, 5];
+  //array.sort((a,b) => { return b - a });
+  array.reverse();
+  console.log(array);
+}
+
+// Q4. make new array without the first two elements(0, 1 index 제외)
+{
+  const array = [1,2,3,4,5];
+  const result = array.slice(2, 5);
+  console.log(result);
+}
+
+class Student {
+  constructor(name, age, enrolled, score){
+    this.name = name;
+    this.age = age;
+    this.enrolled = enrolled;
+    this.score = score;
+  }
+}
+
+const students = [
+  new Student('A', 29, true, 10),
+  new Student('B', 28, false, 50),
+  new Student('C', 30, true, 40),
+  new Student('D', 40, false, 30),
+  new Student('E', 18, true, 20),
+];
+// Q5. find a student with the score 90 (특정 찾기 : find)
+const findStudent = students.find(student =>{
+  return student.score === 50;
+});
+
+console.log(`50점을 맞은 학생은 ${findStudent.name}입니다.`);
+
+// let findstu;
+// for(let i = 0; i < students.length; i++){ 
+//   if(students[i].score === 90){
+//     findstu = i;
+//   }
+// }
+// console.log(`${findstu}번째 학생이 90점을 맞았습니다.`);
+
+// Q6. make an array of enrolled students(여러개 찾기 : filter)
+{
+  const enrolledStudent = students.filter(student => student.enrolled);
+  console.log(enrolledStudent);
+}
+
+// Q7. make an array containing only the students' scores
+// result should be : [45, 80, 90, 66, 88];
+{
+  // let studentScoreArr = [];
+  // for(let i = 0; i < students.length; i++){
+  //   studentScoreArr.push(students[i].score);
+  // }
+  // console.log(studentScoreArr);
+  const studentScoreArr = students.map(student => student.score);
+  console.log(studentScoreArr); 
+}
+
+// Q8. check if there is a student with the score lower than 50 (some < - > every)
+{
+  const studentScoreArr = students.some((student) => student.score < 40);
+  console.log(studentScoreArr);
+}
+
+// Q9. compute student's average score
+{
+  // let sum = 0;
+  // const len = students.length;
+  // for(let student of students){
+  //   sum += student.score;
+  // }
+  // console.log(sum / len);
+
+  const result = students.reduce((prev, curr) => prev + curr.score, 0);
+                                              // return되는 값이 prev로 전달
+  console.log(result / students.length); // 평균
+}
+
+// Q10. make a string containing all the scores
+// return should be : '10, 40, 50, 30 ,20'
+{
+const studentScoreArr = students
+.map(student => student.score)
+.join();
+console.log(studentScoreArr);
+}
+
+// Bonus! do Q10 sorted in ascending order
+// return should be : '10, 20, 30, 40 ,50'
+{
+const studentScoreArr = students
+.map(student => student.score)
+.sort((a,b) => a - b)
+.join();
+console.log(studentScoreArr); 
+}
