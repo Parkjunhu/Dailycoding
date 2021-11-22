@@ -1,0 +1,17 @@
+// 1강(display)
+- html
+<subject>안녕하세요.저는 박준후라고합니다</subject>
+<content>앞으로 이강의를 다들어서 html,css,js는 어느정도 할수있는 실력을 갖추겠습니다.</content>
+
+- css
+subject{
+  color : yellowgreen;
+  background-color : pink;
+  display : block;
+}
+content{
+  color : pink;
+  background-color : green;
+}
+
+// 2강
