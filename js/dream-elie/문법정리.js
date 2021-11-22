@@ -680,3 +680,48 @@ const studentScoreArr = students
 .join();
 console.log(studentScoreArr); 
 }
+
+/* JSON */
+// json : javascript object notation (데이터 포맷)
+// XMLHttpRequest 객체를 이용해 서버와통신
+
+// 1. Object to JSON // 함수는 포함되지않음(순수 데이터들만 json으로 변환됨)
+// stringfy(obj)
+let json = JSON.stringify(true);
+console.log(typeof json);
+
+json = JSON.stringify(['apple', 'banana']);
+console.log(json);
+
+const rabbit = {
+  name : 'tori',
+  color : 'white',
+  size : null, 
+  birthDate : new Date(),
+  jump : () => {
+    console.log(`${this.name} can jump!`);
+  }
+}
+
+json = JSON.stringify(rabbit, ['name', 'color', 'size']);
+console.log(json);
+
+json = JSON.stringify(rabbit, (key, value)=>{
+  console.log(`key : ${key}, value : ${value}`);
+  return key === 'name' ? 'jun' : value;
+});
+console.log(json);
+
+console.log('---------------------------------------');
+
+// 2. JSON to Object
+// parse(obj)
+json = JSON.stringify(rabbit);
+const obj = JSON.parse(json, (key, value) => {
+  console.log(`key : ${key}, value : ${value}`);
+  return key === 'birthDate' ? new Date(value) : value;
+});
+console.log(obj);
+rabbit.jump();
+console.log(rabbit.birthDate.getDate());
+console.log(obj.birthDate.getDate());
